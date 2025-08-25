@@ -1,0 +1,229 @@
+# Global .gitignore for api-scala project
+
+# Python files (api_python/)
+api_python/__pycache__/
+api_python/*.py[cod]
+api_python/*$py.class
+api_python/.pytest_cache/
+api_python/htmlcov/
+api_python/.coverage
+api_python/coverage.xml
+api_python/*.log
+api_python/*.db
+api_python/*.sqlite*
+api_python/test.db
+api_python/venv/
+api_python/.venv/
+api_python/.env
+api_python/.env.*
+api_python/instance/
+
+# Scala files (api_scala/)
+api_scala/target/
+api_scala/project/target/
+api_scala/project/project/
+api_scala/.bsp/
+api_scala/.metals/
+api_scala/.vscode/
+api_scala/metals.sbt
+api_scala/.scala-build/
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# SBT specific
+api_scala/dist/*
+api_scala/project/plugins/project/
+api_scala/project/boot/
+api_scala/project/plugins/src_managed/
+api_scala/project/plugins/lib_managed/
+api_scala/project/plugins/target/
+api_scala/lib_managed/
+api_scala/src_managed/
+api_scala/project/project/target/
+api_scala/.sbt/
+sbt/
+../sbt/
+# SBT global directory
+.sbt/
+global/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+test.db
+*.db-journal
+
+# Logs
+*.log
+logs/
+log/
+
+# Environment files
+.env
+.env.local
+.env.dev
+.env.prod
+.env.test
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# Cache
+.cache/
+cache/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+*.bak
+*.backup
+*.orig
+
+# Test artifacts
+test-reports/
+test_*.db
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+scoverage-report/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE_BIN/
+
+# Package managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Documentation builds
+docs/build/
+site/
+
+# Runtime files
+*.pid
+*.sock
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+
+# Backup and temporary files
+*~
+\#*\#
+.#*
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Virtual environments
+venv*/
+ENV*/
+env*/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Local configuration
+local_settings.*
+settings_local.*
+config_local.*
+application-local.conf
+application-dev.conf
+application-prod.conf
+
+# Media uploads
+uploads/
+media/
+staticfiles/
+
+# Security and secrets
+*.p12
+*.keystore
+secrets/
+.secrets
+secret.conf
+private.key
+public.key
+
+# CI/CD
+.github/workflows/secrets/
+.circleci/config.yml.local
+.travis.yml.local
+
+# Database dumps
+*.sql
+*.dump
+dump.rdb
+
+# Monitoring and metrics
+newrelic.yml
+elastic-apm.yml
+prometheus.yml
+
+# Development tools
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Claude Code specific
+CLAUDE.md.bak
+*.md.bak
+
+# Performance profiling
+*.hprof
+*.jfr
+hs_err_pid*
+replay_pid*
+
+# Spring Boot specific (if used)
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven specific (if used)
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
