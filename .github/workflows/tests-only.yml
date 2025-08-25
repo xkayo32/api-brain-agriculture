@@ -1,0 +1,76 @@
+name: Tests Only - Quick Validation
+
+on:
+  push:
+    branches-ignore: [ main ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  quick-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api: [python, scala]
+        
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Setup para Python
+    - name: Set up Python 3.11
+      if: matrix.api == 'python'
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Python dependencies
+      if: matrix.api == 'python'
+      working-directory: ./api_python
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Python isolated tests
+      if: matrix.api == 'python'
+      working-directory: ./api_python
+      run: |
+        echo "Executando testes Python isolados..."
+        python tests/test_validators_isolated.py
+        python test_runner.py
+
+    # Setup para Scala
+    - name: Set up JDK 11
+      if: matrix.api == 'scala'
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    - name: Setup Scala
+      if: matrix.api == 'scala'
+      uses: olafurpg/setup-scala@v14
+      with:
+        java-version: '11'
+
+    - name: Cache SBT
+      if: matrix.api == 'scala'
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.ivy2/cache
+          ~/.sbt
+        key: ${{ runner.os }}-sbt-${{ hashFiles('api_scala/build.sbt') }}
+
+    - name: Run Scala custom tests
+      if: matrix.api == 'scala'
+      working-directory: ./api_scala
+      run: |
+        echo "Compilando projeto Scala..."
+        sbt compile
+        echo "Executando testes customizados..."
+        sbt "runMain TestRunner"
+
+    - name: Summary
+      run: |
+        echo "✅ Testes ${{ matrix.api }} concluídos com sucesso!"

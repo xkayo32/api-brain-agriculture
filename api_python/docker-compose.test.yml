@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api-test:
+    build: .
+    container_name: brain_api_python_test
+    environment:
+      - DATABASE_URL=postgresql://test_user:test_pass@db-test:5432/test_brain_agriculture
+      - SECRET_KEY=test-secret-key-for-ci
+    depends_on:
+      - db-test
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python test_runner.py
+    networks:
+      - brain_network_test
+
+  db-test:
+    image: postgres:13-alpine
+    container_name: brain_postgres_test
+    environment:
+      POSTGRES_DB: test_brain_agriculture
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_pass
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - brain_network_test
+
+volumes:
+  postgres_test_data:
+
+networks:
+  brain_network_test:
+    driver: bridge

@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: rural_producers_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rural_producers
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rural_network
+
+  api-python:
+    build:
+      context: ./api_python
+      dockerfile: Dockerfile
+    container_name: api_python
+    ports:
+      - "8001:8000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/rural_producers
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: 8000
+    depends_on:
+      - postgres
+    networks:
+      - rural_network
+    volumes:
+      - ./api_python:/app
+    command: python main.py
+
+  api-scala:
+    build:
+      context: ./api_scala
+      dockerfile: Dockerfile
+    container_name: api_scala
+    ports:
+      - "8081:8080"
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/rural_producers
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: 8080
+    depends_on:
+      - postgres
+    networks:
+      - rural_network
+    volumes:
+      - ./api_scala:/app
+
+volumes:
+  postgres_data:
+
+networks:
+  rural_network:
+    driver: bridge

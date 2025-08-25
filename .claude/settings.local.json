@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker-compose build:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker-compose:*)",
+      "Bash(curl:*)",
+      "Bash(python -m pytest tests/ -v --tb=short)",
+      "Bash(python -m pytest tests/unit/ -v --tb=short)",
+      "Bash(python tests:*)",
+      "Bash(python:*)",
+      "Bash(sbt:*)",
+      "Bash(make:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker exec:*)",
+      "Bash(java:*)",
+      "Bash(cat:*)",
+      "Bash(tar:*)",
+      "Bash(./sbt/bin/sbt --version)",
+      "Bash(../sbt/bin/sbt compile)",
+      "Bash(../sbt/bin/sbt \"runMain TestRunner\")",
+      "Bash(../sbt/bin/sbt test)",
+      "Bash(../sbt/bin/sbt \"compile\")",
+      "Bash(../sbt/bin/sbt \"Test/compile\")",
+      "Bash(../sbt/bin/sbt \"Test/runMain TestRunner\")",
+      "Bash(../sbt/bin/sbt \"runMain MinimalMain\")",
+      "Bash(timeout:*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd /c:*)",
+      "Bash(docker system prune:*)",
+      "Bash(sed:*)",
+      "Bash(find:*)",
+      "Bash(docker volume rm:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "additionalDirectories": [
+      "F:\\mnt\\f\\api-scala"
+    ]
+  }
+}
