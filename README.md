@@ -92,7 +92,6 @@ docker-compose up -d
 Usuário admin criado automaticamente:
 - **Username:** `admin`
 - **Password:** `admin123`
-- **Email:** `admin@brazilagro.com`
 
 ## 🧪 Sistema de Testes
 
